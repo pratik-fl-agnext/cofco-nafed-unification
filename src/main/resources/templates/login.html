@@ -1,0 +1,91 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Agnext-Qualix 1.0</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Qualix Agnext">
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- Custom Theme files -->
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<!--fonts-->
+	<link href="//fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
+	<!--//fonts-->
+	<script>
+			
+		function checkIfError(){
+			var errordiv = document.getElementById("errordiv"); 
+			var urlParams = new URLSearchParams(window.location.search);
+			if(urlParams.has('error')){
+				errordiv.style.display = "block";  
+			}
+			
+		}
+		
+		function cleanError(){
+			var errordiv = document.getElementById("errordiv");
+			if (errordiv.style.display != "none") 
+	         {  
+				errordiv.style.display = "none";  
+	         } 
+		}
+		
+	</script>
+</head>
+
+<body onload="checkIfError()">
+	<!-- login -->
+	<div id="particles-js" style="position: absolute;"></div>
+	<div style="position: relative; margin-top: 12em;">
+		<div class="container login-section">
+			<div class="login-w3l">
+				<div class="login-form">
+					<h2 class="wthree">Login!</h2>
+					<div class="w3ls-name1" >
+					<label  id="errordiv" style="display: none; align-content: center; color: #FF0000">Invalid Credentials</label>
+						
+					
+
+					</div>
+					<form action="login" method="post" class="agile_form">
+						<div class="w3ls-name1">
+							<label class="header">email</label>
+							<input placeholder="email@example.com" name="username" type="email" onchange="cleanError()" required />
+						</div>
+						<div class="w3ls-name1">
+							<label class="header">password</label>
+							<input placeholder="*****" name="password" type="password" onchange="cleanError()" required />
+						</div>
+						<input type="submit" value="Login">
+					</form>
+				</div>
+			</div>
+			<div class="login-w3l-bg">
+				<div class="row" style="margin-top:3em;">
+					<img src="images/product_logo.png" alt="" width="200" class="img" />
+					<!--<h3 class="wthree" style="text-align: center;">Quality Food For Billions</h3>-->
+
+				</div>
+
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+	</div>
+
+	<script src='js/particles.min.js'></script>
+	<script src="js/index.js"></script>
+
+</body>
+
+</html>
