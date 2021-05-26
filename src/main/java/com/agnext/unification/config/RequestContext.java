@@ -44,6 +44,7 @@ public class RequestContext {
   private String userMobile;
   private String deviceSerialNumber;
   private Long deviceId;
+  private String requestURL;
   
   private Long stateAdmin;
 
@@ -268,4 +269,14 @@ public class RequestContext {
 	public void setStateAdmin(Long stateAdmin) {
 		this.stateAdmin = stateAdmin;
 	}
+
+	public String getRequestURL() {
+	    return requestURL;
+	}
+
+	public void setRequestURL(String requestURL) {
+	    this.requestURL = requestURL;
+	}
+	
+	
 }

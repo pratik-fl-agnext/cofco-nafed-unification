@@ -185,7 +185,7 @@ spring:
   profiles: dev
 
 server:
-  port: 9982
+  port: 9984
   servlet.context-path: /
 
 logging:

@@ -1,5 +1,7 @@
 package com.agnext.unification.common;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -53,6 +55,8 @@ public class Constants {
 	public static final String DATETIME_FORMAT = "MM/dd/yyyy HH:mm:ss";
 	public static final String DATE_FORMAT_NEW = "MM-dd-yyyy";
 	public static final String WEIGHT_UNIT = "Tons";
+	public static final String COFCO = "COFCO";
+	public static final String NAFED = "NAFED";
 
 	public enum STATUS {
 		// USER AND FAQ(Active and InActive)
@@ -91,6 +95,38 @@ public class Constants {
 		public String toString() {
 			return this.abbr;
 		}
+	}
+	
+	public enum URL {
+
+	    COFCO("http://cofco.qualix.ai", "COFCO"), NAFED("http://visio.qualixag.club", "NAFED");
+
+	    private final String url;
+	    private final String id;
+
+	    private static final Map<String, String> MAP = new HashMap<String, String>();
+	    static {
+	        for (URL s : URL.values()) {
+	            MAP.put(s.url, s.id);
+	        }
+	    }
+
+	    private URL(String url, String id) {
+	        this.url = url;
+	        this.id = id;
+	    }                                                                                                                               
+	                                                                                                                             	    
+	    public String getUrl() {
+	        return url;
+	    }
+
+	    public String getId() {
+	        return id;
+	    }
+
+	    public static String getIdUsingUrl(String url){
+		return MAP.get(url);
+	    }
 	}
 
 	public interface ErrorMessage {

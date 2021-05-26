@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.agnext.unification.common.Constants;
+import com.agnext.unification.config.ApplicationContext;
 import com.agnext.unification.model.CategoryCommodityVarietyWrapperModel;
 import com.agnext.unification.model.CommodityCategoryModel;
 import com.agnext.unification.model.CommodityModel;
 import com.agnext.unification.model.CommodityVarietyModel;
 import com.agnext.unification.service.CommodityService;
+import com.agnext.unification.service.ICommodityService;
 
 /**
  * Commodity Controller
@@ -30,6 +33,13 @@ public class CommodityController {
 
     @Autowired
     CommodityService service;
+    
+    @Autowired
+    ApplicationContext  appContext;
+    
+    @Autowired
+    ICommodityService commInterface;
+ 
 
     /**
      * get the commodity category.
@@ -188,6 +198,20 @@ public class CommodityController {
 	try {
 	    List<CommodityModel> response = service.getNafedCommoditied();
 	    return new ResponseEntity<>(response, HttpStatus.OK);
+	} catch (Exception e) {
+	    return service.handleException(e);
+	}
+    }
+    
+    @GetMapping("/unified-commoditied")
+    public ResponseEntity<?> getCommoditiedUnified() {
+	try {
+	  String urlId = Constants.URL.getIdUsingUrl(appContext.getRequestContext().getRequestURL());
+	  //urlId = "COFCO";
+	    
+	  List<CommodityModel> response = commInterface.getCommodityList(urlId);
+	  
+	  return new ResponseEntity<>(response, HttpStatus.OK);
 	} catch (Exception e) {
 	    return service.handleException(e);
 	}

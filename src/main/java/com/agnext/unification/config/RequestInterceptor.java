@@ -71,6 +71,7 @@ public class RequestInterceptor implements HandlerInterceptor {
 
   private void updateRequestContext(final String correlationId, final HttpServletRequest request,
       final TokenStore tokenStore, HttpServletResponse response) throws Exception {
+    
     RequestContext requestContext = serverContext.getRequestContext();
     logger.debug("request Context before Updation : " + requestContext);
     if(requestContext != null){
@@ -89,6 +90,7 @@ public class RequestInterceptor implements HandlerInterceptor {
       requestContext.setUserEmail(tokenStore.getUserEmail());
       requestContext.setUserMobile(tokenStore.getUserMobile());
       requestContext.setStateAdmin(getStateAdmin(requestContext));
+      requestContext.setRequestURL(request.getHeader("origin"));
       setDeviceDetails(requestContext,tokenStore);
       try {
         requestContext.setAccessToken(fetchToken(request.getHeader("Authorization")));
