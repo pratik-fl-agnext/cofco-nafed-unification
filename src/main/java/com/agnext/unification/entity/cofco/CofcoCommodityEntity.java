@@ -12,12 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import com.agnext.unification.model.CommodityBaseEntity;
+import org.springframework.stereotype.Component;
+
+import com.agnext.unification.entity.CommodityBaseEntity;
 
 /**
  * The persistent class for the dcm_commodity database table.
  * 
  */
+@Component("cofco_commodities_entity")
 @Entity
 @Table(name = "dcm_commodity")
 @NamedQuery(name = "CofcoCommodityEntity.findAll", query = "SELECT d FROM CofcoCommodityEntity d")

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.agnext.unification.entity.nafed.DcmCommodity;
-import com.agnext.unification.model.CommodityBaseRepository;
+import com.agnext.unification.repository.CommodityBaseRepository;
 
 @Transactional
 public interface DcmCommodityRepository extends CommodityBaseRepository<DcmCommodity> {

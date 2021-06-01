@@ -19,6 +19,8 @@ import com.agnext.unification.model.CategoryCommodityVarietyWrapperModel;
 import com.agnext.unification.model.CommodityCategoryModel;
 import com.agnext.unification.model.CommodityModel;
 import com.agnext.unification.model.CommodityVarietyModel;
+import com.agnext.unification.repository.cofco.CofcoCommodityRepository;
+import com.agnext.unification.repository.nafed.DcmCommodityRepository;
 import com.agnext.unification.service.CommodityService;
 import com.agnext.unification.service.ICommodityService;
 
@@ -43,6 +45,12 @@ public class CommodityController {
     
     @Autowired
     BeanFactory bf;
+    
+    @Autowired
+	DcmCommodityRepository nafedCommRepo;
+    
+    @Autowired
+    CofcoCommodityRepository cofcoCommRepo;
  
 
     /**
@@ -212,8 +220,10 @@ public class CommodityController {
 	try {
 	  String urlId = Constants.URL.getIdUsingUrl(appContext.getRequestContext().getRequestURL());
 	  //urlId = "COFCO";
+	  
+	  //TODO implement factory pattern
 	    
-	  List<CommodityModel> response = bf.getBean(urlId, ICommodityService.class).getAllCommodityList(urlId);
+	  List<CommodityModel> response = bf.getBean(urlId, ICommodityService.class).getAllCommodityList(urlId, cofcoCommRepo);
 	  
 	  return new ResponseEntity<>(response, HttpStatus.OK);
 	} catch (Exception e) {

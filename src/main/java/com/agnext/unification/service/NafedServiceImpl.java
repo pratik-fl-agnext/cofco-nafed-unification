@@ -8,9 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.agnext.unification.entity.CommodityBaseEntity;
 import com.agnext.unification.entity.cofco.CofcoCommodityEntity;
-import com.agnext.unification.model.CommodityBaseRepository;
 import com.agnext.unification.model.CommodityModel;
+import com.agnext.unification.repository.CommodityBaseRepository;
 import com.agnext.unification.repository.nafed.DcmCommodityRepository;
 
 @Component("NAFED")
@@ -20,24 +21,30 @@ public class NafedServiceImpl implements ICommodityService {
 	
 	@Autowired
 	DcmCommodityRepository commodityRepo;
-	
-	@Autowired
-	CommodityBaseRepository<CofcoCommodityEntity> commBaseRepo;
-
-	
+		
 	@Override
-	public List<CommodityModel> getAllCommodityList(String urlId) {
+	public List<CommodityModel> getAllCommodityList(String urlId,CommodityBaseRepository<? extends CommodityBaseEntity> commBaseRepo) {
 	    List<CommodityModel> response = new ArrayList<>();
 	    
-	    List<CofcoCommodityEntity> comm = commBaseRepo.findAll();
+	    List<? extends CommodityBaseEntity> comm = commBaseRepo.findAll();
+	    
+	    List<CofcoCommodityEntity> cofcoCommodity = new ArrayList<>();
 	   	comm.forEach(e ->
 	   	{
-	   	    CommodityModel m = new CommodityModel();
+	   	    
+	   	    cofcoCommodity.add((CofcoCommodityEntity)e);
+	   	    /*CommodityModel m = new CommodityModel();
 	   	    m.setCommodityId(e.getId());
 	   	    m.setCommodityName(e.getCommodityName());
-	   	    response.add(m);
+	   	    response.add(m);*/
 	   	}	
 	   	);
+	   	
+	   	cofcoCommodity.stream().forEach(commcofco -> {
+	   	    System.out.println(commcofco.getCommodityName());
+	   	    
+	   	    
+	   	});
 	   		   	
 	   	return response;
 	}

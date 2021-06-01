@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import com.agnext.unification.model.CommodityBaseEntity;
+import com.agnext.unification.entity.CommodityBaseEntity;
 
 /**
  * The persistent class for the dcm_commodity database table.
