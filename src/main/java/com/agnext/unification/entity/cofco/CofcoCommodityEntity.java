@@ -9,7 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import com.agnext.unification.model.CommodityBaseEntity;
 
 /**
  * The persistent class for the dcm_commodity database table.
@@ -17,8 +20,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "dcm_commodity")
-//@NamedQuery(name = "DcmCommodity.findAll", query = "SELECT d FROM DcmCommodity d")
-public class CofcoCommodityEntity implements Serializable {
+@NamedQuery(name = "CofcoCommodityEntity.findAll", query = "SELECT d FROM CofcoCommodityEntity d")
+public class CofcoCommodityEntity extends CommodityBaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -51,7 +54,7 @@ public class CofcoCommodityEntity implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "commodity_category_id")
-	private DcmCommodityCategory dcmCommodityCategory;
+	private CofcoCommodityCategory cofcoCommodityCategory;
 	
 	@ManyToOne
 	@JoinColumn(name = "status_id")
@@ -140,12 +143,14 @@ public class CofcoCommodityEntity implements Serializable {
 		this.count = count;
 	}
 
-	public DcmCommodityCategory getDcmCommodityCategory() {
-		return dcmCommodityCategory;
+	
+
+	public CofcoCommodityCategory getCofcoCommodityCategory() {
+	    return cofcoCommodityCategory;
 	}
 
-	public void setDcmCommodityCategory(DcmCommodityCategory dcmCommodityCategory) {
-		this.dcmCommodityCategory = dcmCommodityCategory;
+	public void setCofcoCommodityCategory(CofcoCommodityCategory cofcoCommodityCategory) {
+	    this.cofcoCommodityCategory = cofcoCommodityCategory;
 	}
 
 	@Override
@@ -153,15 +158,9 @@ public class CofcoCommodityEntity implements Serializable {
 		return "DcmCommodity [id=" + id + ", commodityCode=" + commodityCode + ", commodityName=" + commodityName
 				+ ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", modifiedBy=" + modifiedBy
 				+ ", modifiedOn=" + modifiedOn + ",   count=" + count
-				+ ", dcmCommodityCategory=" + dcmCommodityCategory + "]";
+				+ ", dcmCommodityCategory=" + cofcoCommodityCategory + "]";
 	}
 
-	public StatusEntity getStatus() {
-		return status;
-	}
 
-	public void setStatus(StatusEntity status) {
-		this.status = status;
-	}
 
 }

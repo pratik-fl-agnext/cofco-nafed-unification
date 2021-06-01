@@ -1,7 +1,6 @@
 package com.agnext.unification.entity.cofco;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,8 +18,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "dcm_commodity_category")
-@NamedQuery(name = "DcmCommodityCategory.findAll", query = "SELECT d FROM DcmCommodityCategory d")
-public class DcmCommodityCategory implements Serializable{
+@NamedQuery(name = "CofcoCommodityCategory.findAll", query = "SELECT d FROM CofcoCommodityCategory d")
+public class CofcoCommodityCategory implements Serializable{
 
 	
 	/**

@@ -123,8 +123,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-//import com.itextpdf.html2pdf.HtmlConverter;
-//import com.itextpdf.html2pdf.HtmlConverter;
 
 @Service
 @Transactional

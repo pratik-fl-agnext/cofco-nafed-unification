@@ -19,7 +19,6 @@ public class CofcoServiceImpl {
     
     @Autowired
     CofcoCommodityRepository cofcoCommRepo;
-
 	
 	 public List<CommodityModel> getCofcoCommoditied() {
 		List<CommodityModel> response = new ArrayList<>();

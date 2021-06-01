@@ -3,13 +3,15 @@ package com.agnext.unification.repository.nafed;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.agnext.unification.entity.nafed.DcmCommodity;
+import com.agnext.unification.model.CommodityBaseRepository;
 
-public interface DcmCommodityRepository extends JpaRepository<DcmCommodity, Long> {
+@Transactional
+public interface DcmCommodityRepository extends CommodityBaseRepository<DcmCommodity> {
 
     @Query("from DcmCommodity c where c.commodityName=:commodityName")
     DcmCommodity getCommodityName(@Param("commodityName") String commodityName);

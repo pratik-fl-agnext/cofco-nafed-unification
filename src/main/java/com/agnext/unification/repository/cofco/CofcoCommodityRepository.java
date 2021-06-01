@@ -1,10 +1,12 @@
 package com.agnext.unification.repository.cofco;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.agnext.unification.entity.cofco.CofcoCommodityEntity;
+import com.agnext.unification.model.CommodityBaseRepository;
 
-public interface CofcoCommodityRepository extends JpaRepository<CofcoCommodityEntity, Long> {
+@Transactional
+public interface CofcoCommodityRepository extends CommodityBaseRepository<CofcoCommodityEntity>{
 
    
 }
