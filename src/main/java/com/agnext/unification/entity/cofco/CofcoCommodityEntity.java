@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import com.agnext.unification.entity.CommodityBaseEntity;
+import com.agnext.unification.entity.BaseEntityClass;
 
 /**
  * The persistent class for the dcm_commodity database table.
@@ -21,7 +21,7 @@ import com.agnext.unification.entity.CommodityBaseEntity;
 @Entity
 @Table(name = "dcm_commodity")
 @NamedQuery(name = "CofcoCommodityEntity.findAll", query = "SELECT d FROM CofcoCommodityEntity d")
-public class CofcoCommodityEntity extends CommodityBaseEntity implements Serializable {
+public class CofcoCommodityEntity extends BaseEntityClass implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

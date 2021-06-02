@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.agnext.unification.assembler.EntityToVOAssembler;
 import com.agnext.unification.common.Constants;
-import com.agnext.unification.entity.CommodityBaseEntity;
+import com.agnext.unification.entity.BaseEntityClass;
 import com.agnext.unification.entity.cofco.CofcoCommodityEntity;
 import com.agnext.unification.entity.nafed.CommodityVarietyEntity;
 import com.agnext.unification.entity.nafed.DcmCommodity;
@@ -35,7 +35,7 @@ import com.agnext.unification.model.CommodityCategoryModel;
 import com.agnext.unification.model.CommodityModel;
 import com.agnext.unification.model.CommodityVarietyModel;
 import com.agnext.unification.model.VarietyModel;
-import com.agnext.unification.repository.CommodityBaseRepository;
+import com.agnext.unification.repository.BaseRepository;
 import com.agnext.unification.repository.cofco.CofcoCommodityRepository;
 import com.agnext.unification.repository.nafed.CommodityVarietyRepository;
 import com.agnext.unification.repository.nafed.DcmCommodityCategoryRepository;
@@ -43,7 +43,7 @@ import com.agnext.unification.repository.nafed.DcmCommodityRepository;
 import com.agnext.unification.repository.nafed.DeviceCommodityRepository;
 import com.agnext.unification.repository.nafed.DeviceRepository;
 import com.agnext.unification.repository.nafed.FilterRepository;
-import com.agnext.unification.repository.nafed.ScmScanRepository;
+import com.agnext.unification.repository.nafed.NafedScmScanRepository;
 import com.agnext.unification.repository.nafed.StateManagerOperatorRepository;
 import com.agnext.unification.validator.BaseValidator;
 
@@ -66,7 +66,7 @@ public class CommodityService extends GenericService {
     FilterRepository filterRepo;
 
     @Autowired
-    ScmScanRepository scanRepo;
+    NafedScmScanRepository scanRepo;
     
     @Autowired
     DeviceCommodityRepository deviceCommodityRepo;
@@ -419,10 +419,10 @@ public class CommodityService extends GenericService {
    	return response;
        }
     
-	public List<CommodityModel> getAllCommodityList(String urlId, CommodityBaseRepository<? extends CommodityBaseEntity> commBaseRepo) {
+	public List<CommodityModel> getAllCommodityList(String urlId, BaseRepository<? extends BaseEntityClass> baseRepo) {
 	    List<CommodityModel> response = new ArrayList<>();
 	    
-	    List<CofcoCommodityEntity> comm = (List<CofcoCommodityEntity>) commBaseRepo.findAll();
+	    List<CofcoCommodityEntity> comm = (List<CofcoCommodityEntity>) baseRepo.findAll();
 	    
 	    comm.forEach(e ->
 	   	{    

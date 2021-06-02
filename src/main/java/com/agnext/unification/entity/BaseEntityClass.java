@@ -9,14 +9,14 @@ import javax.persistence.MappedSuperclass;
 
 
 @MappedSuperclass
-public class CommodityBaseEntity implements Serializable {
+public class BaseEntityClass implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	public CommodityBaseEntity() {
+	public BaseEntityClass() {
 	}
 
 

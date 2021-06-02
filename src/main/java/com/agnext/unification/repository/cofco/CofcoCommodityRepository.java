@@ -8,10 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.agnext.unification.entity.cofco.CofcoCommodityEntity;
-import com.agnext.unification.repository.CommodityBaseRepository;
+import com.agnext.unification.repository.BaseRepository;
 
 @Repository("cofcoCommodityRepository")
-public interface CofcoCommodityRepository extends CommodityBaseRepository<CofcoCommodityEntity> {
+public interface CofcoCommodityRepository extends BaseRepository<CofcoCommodityEntity> {
 
     @Query("from CofcoCommodityEntity c where c.commodityName=:commodityName")
     CofcoCommodityEntity getCommodityName(@Param("commodityName") String commodityName);

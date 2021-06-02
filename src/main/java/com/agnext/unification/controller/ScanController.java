@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.agnext.unification.common.Constants;
+import com.agnext.unification.config.ApplicationContext;
 import com.agnext.unification.model.AcceptanceModel;
 import com.agnext.unification.model.AvgScanCountModel;
 import com.agnext.unification.model.HistoryMoistureWrapperModel;
@@ -32,6 +34,8 @@ import com.agnext.unification.model.ScanHistoryResponseModel;
 import com.agnext.unification.model.ScanModel;
 import com.agnext.unification.model.ScanResponseModel;
 import com.agnext.unification.model.VarianceModel;
+import com.agnext.unification.repository.cofco.CofcoScmScanRepository;
+import com.agnext.unification.repository.nafed.NafedScmScanRepository;
 import com.agnext.unification.service.ScanService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -46,8 +50,18 @@ public class ScanController {
 
     @Autowired
     private ObjectMapper objectMapper;
+    
     @Autowired
     ScanService scanService;
+    
+    @Autowired
+    ApplicationContext appContext;
+    
+    @Autowired
+    NafedScmScanRepository nafedScanRepo;
+    
+    @Autowired
+    CofcoScmScanRepository cofcoScanRepo;
 
     @PostMapping("/post-visio")
     public ResponseEntity<?> saveNanoScan(MultipartHttpServletRequest request,
@@ -329,9 +343,12 @@ public class ScanController {
 
 	ScanHistoryResponseModel response;
 	try {
+	    String urlId = Constants.URL.getIdUsingUrl(appContext.getRequestContext().getRequestURL());
+
+	    
 	    response = scanService.getScanHistoryTest(pageNumber, limit, customerId, commodityId, ccId, dateFrom,
 		    dateTo, farmerId, deviceType, deviceTypeId, deviceSerialNumber, userType, commCategoryId, sortBy,
-		    sortType, stateId);
+		    sortType, stateId, nafedScanRepo);
 
 	    if (response == null)
 		return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
@@ -370,7 +387,7 @@ public class ScanController {
 
 	MetaDataModel response;
 	try {
-	    response = scanService.getScanMetaDataByScanId(scanId);
+	    response = scanService.getScanMetaDataByScanId(scanId, nafedScanRepo);
 	    if (response == null) {
 		return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
 	    }

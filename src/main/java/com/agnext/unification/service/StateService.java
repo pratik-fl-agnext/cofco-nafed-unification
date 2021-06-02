@@ -18,7 +18,7 @@ import com.agnext.unification.common.Constants;
 import com.agnext.unification.entity.nafed.StateEntity;
 import com.agnext.unification.model.StateModel;
 import com.agnext.unification.repository.nafed.ScanLocationRepository;
-import com.agnext.unification.repository.nafed.ScmScanRepository;
+import com.agnext.unification.repository.nafed.NafedScmScanRepository;
 import com.agnext.unification.repository.nafed.StateRepository;
 
 @Service
@@ -31,7 +31,7 @@ public class StateService extends GenericService {
     StateRepository repo;
 
     @Autowired
-    ScmScanRepository scanRepo;
+    NafedScmScanRepository scanRepo;
 
     @Autowired
     ScanLocationRepository scanLocationRepo;

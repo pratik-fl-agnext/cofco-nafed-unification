@@ -63,7 +63,7 @@ import com.agnext.unification.repository.nafed.DeviceRepository;
 import com.agnext.unification.repository.nafed.FilterRepository;
 import com.agnext.unification.repository.nafed.ScanLocationRepository;
 import com.agnext.unification.repository.nafed.ScanResultEntityRepository;
-import com.agnext.unification.repository.nafed.ScmScanRepository;
+import com.agnext.unification.repository.nafed.NafedScmScanRepository;
 import com.agnext.unification.repository.nafed.UserAnalyticLinkRepository;
 import com.agnext.unification.repository.nafed.UserRepository;
 import com.agnext.unification.utility.Utility;
@@ -90,7 +90,7 @@ public class AnalyticsService extends GenericService {
     //    ScanLocationRepository locationRepo;
 
     @Autowired
-    ScmScanRepository scanRepo;
+    NafedScmScanRepository scanRepo;
 
     @Autowired
     DcmCommodityRepository commodityRepository;

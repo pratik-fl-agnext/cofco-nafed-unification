@@ -14,9 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.agnext.unification.entity.BaseEntityClass;
+
 @Entity
 @Table(name = "scm_scans")
-public class ScanEntity {
+public class ScanEntity extends BaseEntityClass {
 
     /**
      * 

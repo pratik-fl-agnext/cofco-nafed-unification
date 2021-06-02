@@ -8,10 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.agnext.unification.entity.nafed.DcmCommodity;
-import com.agnext.unification.repository.CommodityBaseRepository;
+import com.agnext.unification.repository.BaseRepository;
 
 @Transactional
-public interface DcmCommodityRepository extends CommodityBaseRepository<DcmCommodity> {
+public interface DcmCommodityRepository extends BaseRepository<DcmCommodity> {
 
     @Query("from DcmCommodity c where c.commodityName=:commodityName")
     DcmCommodity getCommodityName(@Param("commodityName") String commodityName);

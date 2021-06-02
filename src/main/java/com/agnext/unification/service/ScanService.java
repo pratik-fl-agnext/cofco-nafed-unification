@@ -56,6 +56,7 @@ import com.agnext.unification.communication.RestTemplateCall;
 import com.agnext.unification.config.AnalyticsVariations;
 import com.agnext.unification.config.PropertiesAccessModel;
 import com.agnext.unification.config.RequestContext;
+import com.agnext.unification.entity.BaseEntityClass;
 import com.agnext.unification.entity.nafed.CityEntity;
 import com.agnext.unification.entity.nafed.CommodityVarietyEntity;
 import com.agnext.unification.entity.nafed.CountryEntity;
@@ -97,6 +98,7 @@ import com.agnext.unification.model.ScanResultModel;
 import com.agnext.unification.model.ScansModel;
 import com.agnext.unification.model.VarianceModel;
 import com.agnext.unification.model.WeightConverterModel;
+import com.agnext.unification.repository.BaseRepository;
 import com.agnext.unification.repository.nafed.CityRepository;
 import com.agnext.unification.repository.nafed.CommodityVarietyRepository;
 import com.agnext.unification.repository.nafed.CountryRepository;
@@ -106,11 +108,11 @@ import com.agnext.unification.repository.nafed.DcmCommodityRepository;
 import com.agnext.unification.repository.nafed.DeviceRepository;
 import com.agnext.unification.repository.nafed.FilterRepository;
 import com.agnext.unification.repository.nafed.MoistureMeterResultRepository;
+import com.agnext.unification.repository.nafed.NafedScmScanRepository;
 import com.agnext.unification.repository.nafed.PlotRepository;
 import com.agnext.unification.repository.nafed.QualityRulesRepository;
 import com.agnext.unification.repository.nafed.ScanLocationRepository;
 import com.agnext.unification.repository.nafed.ScanResultEntityRepository;
-import com.agnext.unification.repository.nafed.ScmScanRepository;
 import com.agnext.unification.repository.nafed.StateManagerOperatorRepository;
 import com.agnext.unification.repository.nafed.StateRepository;
 import com.agnext.unification.repository.nafed.StatusRepository;
@@ -134,7 +136,7 @@ public class ScanService extends GenericService {
     private String customerAdminEmail;
 
     @Autowired
-    ScmScanRepository scanRepo;
+    NafedScmScanRepository scanRepo;
 
     @Autowired
     DcmCommodityRepository commodityRepository;
@@ -1104,7 +1106,7 @@ public class ScanService extends GenericService {
     public ScanHistoryResponseModel getScanHistoryTest(Integer pageNumber, Integer limit, Long customerId2,
 	    Long commodityId, Long ccId, Long dateFrom, Long dateTo, Long userId, String deviceType, Long deviceTypeId,
 	    String deviceSerialNumber, String userType, Long commCategoryId, String sortByRequested,
-	    String sortTypeRequested, Long stateId) throws IMException {
+	    String sortTypeRequested, Long stateId, BaseRepository<? extends BaseEntityClass> baseRepo) throws IMException {
 
 	logger.info("get scan history");
 	List<ScanResultModel> response = new ArrayList<ScanResultModel>();
@@ -1138,20 +1140,20 @@ public class ScanService extends GenericService {
 	    customerId = null;
 	}
 	
-	List<ScanEntity> results = scanRepo.getScanHistory(customerId, commodityId, ccId, dateFrom, dateTo, userId,
+	List<ScanEntity> results =  ((NafedScmScanRepository) baseRepo).getScanHistory(customerId, commodityId, ccId, dateFrom, dateTo, userId,
 		deviceType, deviceTypeId, deviceSerialNumber, pageable, operatorId, commCategoryId, stateId);
 
 
 
-	List<ScanEntity> resultsCount = scanRepo.getScanHistoryCount(customerId, commodityId, ccId, dateFrom, dateTo,
+	List<ScanEntity> resultsCount = ((NafedScmScanRepository) baseRepo).getScanHistoryCount(customerId, commodityId, ccId, dateFrom, dateTo,
 		userId, deviceType, deviceTypeId, deviceSerialNumber, operatorId, commCategoryId, stateId);
 
 	if (requestContext.getUserEmail().equals("ai@agnext.in")) {
 
-	    List<ScanEntity> resultsCountAI = scanRepo.getScanHistoryCount(customerId, commodityId, ccId, dateFrom,
+	    List<ScanEntity> resultsCountAI = ((NafedScmScanRepository) baseRepo).getScanHistoryCount(customerId, commodityId, ccId, dateFrom,
 		    dateTo, userId, deviceType, deviceTypeId, deviceSerialNumber, operatorId, commCategoryId, stateId);
 	    
-		List<ScanEntity> resultsAI = scanRepo.getScanHistoryAIModel(customerId, commodityId, ccId, dateFrom, dateTo,
+		List<ScanEntity> resultsAI = ((NafedScmScanRepository) baseRepo).getScanHistoryAIModel(customerId, commodityId, ccId, dateFrom, dateTo,
 				userId, deviceType, deviceTypeId, deviceSerialNumber, pageable, operatorId, commCategoryId, stateId);
 
 	    for (ScanEntity result : resultsAI)
@@ -1298,8 +1300,8 @@ MoistureMeterResult moistureEntity= null;
 
     }
 
-    public MetaDataModel getScanMetaDataByScanId(Long scanId) throws IMException, IOException {
-	ScanEntity scmScanEntity = scanRepo.getOne(scanId);
+    public MetaDataModel getScanMetaDataByScanId(Long scanId, BaseRepository<? extends BaseEntityClass> baseRepo) throws IMException, IOException {
+	ScanEntity scmScanEntity = (ScanEntity) baseRepo.getOne(scanId);
 	return EntityToVOAssembler.convertModelForMetaData(scmScanEntity, customerRepo);
     }
 
