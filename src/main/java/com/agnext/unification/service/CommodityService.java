@@ -422,7 +422,7 @@ public class CommodityService extends GenericService {
 	public List<CommodityModel> getAllCommodityList(String urlId, CommodityBaseRepository<? extends CommodityBaseEntity> commBaseRepo) {
 	    List<CommodityModel> response = new ArrayList<>();
 	    
-	    List<DcmCommodity> comm = (List<DcmCommodity>) commBaseRepo.findAll();
+	    List<CofcoCommodityEntity> comm = (List<CofcoCommodityEntity>) commBaseRepo.findAll();
 	    
 	    comm.forEach(e ->
 	   	{    

@@ -21,9 +21,9 @@ import com.agnext.unification.entity.cofco.UserEntity;
  * @since 1.0
  */
 
-@Repository
+@Repository("cofcoFilterCofcoNativeRepository")
 @Transactional
-public class FilterNativeRepository {
+public class FilterCofcoNativeRepository {
 
     @PersistenceContext
     EntityManager em;

@@ -18,9 +18,9 @@ import com.agnext.unification.entity.cofco.ScanLocation;
 import com.agnext.unification.exception.IMException;
 import com.agnext.unification.utility.Utility;
 
-@Repository
+@Repository("cofcoFilterCofcoRepository")
 @Transactional
-public class FilterRepository {
+public class FilterCofcoRepository {
 
     @PersistenceContext
     EntityManager em;

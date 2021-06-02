@@ -3,9 +3,11 @@ package com.agnext.unification.repository.cofco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.agnext.unification.entity.cofco.DcmDeviceType;
 
+@Repository("cofcoDeviceTypeRepository")
 public interface DeviceTypeRepository extends JpaRepository<DcmDeviceType, Long> {
 	@Query("select dt.deviceTypeDesc from DcmDeviceType dt where dt.id=:id")
 	String getName(@Param("id") Long id);

@@ -218,7 +218,7 @@ public class CommodityController {
 	  
 	  //TODO implement factory pattern
 	  
-	  List<CommodityModel> response = service.getAllCommodityList(urlId, nafedCommRepo);
+	  List<CommodityModel> response = service.getAllCommodityList(urlId, cofcoCommRepo);
 	  
 	  return new ResponseEntity<>(response, HttpStatus.OK);
 	} catch (Exception e) {

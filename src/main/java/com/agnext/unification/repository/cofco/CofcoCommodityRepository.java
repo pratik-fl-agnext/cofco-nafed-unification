@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.agnext.unification.entity.cofco.CofcoCommodityEntity;
 import com.agnext.unification.repository.CommodityBaseRepository;
 
-
+@Repository("cofcoCommodityRepository")
 public interface CofcoCommodityRepository extends CommodityBaseRepository<CofcoCommodityEntity> {
 
     @Query("from CofcoCommodityEntity c where c.commodityName=:commodityName")

@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.agnext.unification.entity.cofco.PackageCommoditiesPrice;
 
+@Repository("cofcoPackageCommoditiesPriceRepository")
 public interface PackageCommoditiesPriceRepository extends JpaRepository<PackageCommoditiesPrice, Long> {
 
     @Query("from PackageCommoditiesPrice pcp where pcp.packages.id=:id "
