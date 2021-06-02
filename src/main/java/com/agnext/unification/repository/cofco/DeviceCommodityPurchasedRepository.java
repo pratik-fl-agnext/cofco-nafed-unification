@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.agnext.unification.entity.cofco.CofcoCommodityEntity;
 import com.agnext.unification.entity.cofco.DcmDevice;
 import com.agnext.unification.entity.cofco.DeviceCommodityPurchased;
-import com.agnext.unification.entity.nafed.DcmCommodity;
 
 public interface DeviceCommodityPurchasedRepository extends JpaRepository<DeviceCommodityPurchased, Long> {
 
@@ -20,7 +20,7 @@ public interface DeviceCommodityPurchasedRepository extends JpaRepository<Device
 	    @Param("deviceTypeId") Long deviceTypeId);
 
     List<DeviceCommodityPurchased> findByClientIdAndCommodityAndDeviceAndDeviceTypeIdAndPackageId(Long clientId,
-	    DcmCommodity commodity, DcmDevice device, Long deviceTypeId, Long packageId);
+	    CofcoCommodityEntity commodity, DcmDevice device, Long deviceTypeId, Long packageId);
 
     @Query("from DeviceCommodityPurchased dcp where dcp.clientId=:clientId and dcp.device.id=:id")
     List<DeviceCommodityPurchased> getSubscriptionsByClientAndDeviceId(@Param("clientId") Long clientId,
