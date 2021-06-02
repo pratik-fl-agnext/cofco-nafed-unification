@@ -18,8 +18,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "dcm_commodity_category")
-@NamedQuery(name = "CofcoCommodityCategory.findAll", query = "SELECT d FROM CofcoCommodityCategory d")
-public class CofcoCommodityCategory implements Serializable{
+@NamedQuery(name = "CofcoCommodityCategoryEntity.findAll", query = "SELECT d FROM CofcoCommodityCategoryEntity d")
+public class CofcoCommodityCategoryEntity implements Serializable{
 
 	
 	/**

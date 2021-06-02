@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.agnext.unification.assembler.EntityToVOAssembler;
 import com.agnext.unification.common.Constants;
+import com.agnext.unification.entity.CommodityBaseEntity;
 import com.agnext.unification.entity.cofco.CofcoCommodityEntity;
 import com.agnext.unification.entity.nafed.CommodityVarietyEntity;
 import com.agnext.unification.entity.nafed.DcmCommodity;
@@ -34,6 +35,7 @@ import com.agnext.unification.model.CommodityCategoryModel;
 import com.agnext.unification.model.CommodityModel;
 import com.agnext.unification.model.CommodityVarietyModel;
 import com.agnext.unification.model.VarietyModel;
+import com.agnext.unification.repository.CommodityBaseRepository;
 import com.agnext.unification.repository.cofco.CofcoCommodityRepository;
 import com.agnext.unification.repository.nafed.CommodityVarietyRepository;
 import com.agnext.unification.repository.nafed.DcmCommodityCategoryRepository;
@@ -416,5 +418,21 @@ public class CommodityService extends GenericService {
    	
    	return response;
        }
+    
+	public List<CommodityModel> getAllCommodityList(String urlId, CommodityBaseRepository<? extends CommodityBaseEntity> commBaseRepo) {
+	    List<CommodityModel> response = new ArrayList<>();
+	    
+	    List<DcmCommodity> comm = (List<DcmCommodity>) commBaseRepo.findAll();
+	    
+	    comm.forEach(e ->
+	   	{    
+	   	    CommodityModel m = new CommodityModel();
+	   	    m.setCommodityId(e.getId());
+	   	    m.setCommodityName(e.getCommodityName());
+	   	    response.add(m);
+	   	}	
+	   	);	   	
+	   	return response;
+	}
 	
 }

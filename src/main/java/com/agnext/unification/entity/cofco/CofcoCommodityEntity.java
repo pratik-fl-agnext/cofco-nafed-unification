@@ -12,15 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-
 import com.agnext.unification.entity.CommodityBaseEntity;
 
 /**
  * The persistent class for the dcm_commodity database table.
  * 
  */
-@Component("cofco_commodities_entity")
 @Entity
 @Table(name = "dcm_commodity")
 @NamedQuery(name = "CofcoCommodityEntity.findAll", query = "SELECT d FROM CofcoCommodityEntity d")
@@ -57,7 +54,7 @@ public class CofcoCommodityEntity extends CommodityBaseEntity implements Seriali
 	
 	@ManyToOne
 	@JoinColumn(name = "commodity_category_id")
-	private CofcoCommodityCategory cofcoCommodityCategory;
+	private CofcoCommodityCategoryEntity dcmCommodityCategory;
 	
 	@ManyToOne
 	@JoinColumn(name = "status_id")
@@ -146,14 +143,12 @@ public class CofcoCommodityEntity extends CommodityBaseEntity implements Seriali
 		this.count = count;
 	}
 
-	
-
-	public CofcoCommodityCategory getCofcoCommodityCategory() {
-	    return cofcoCommodityCategory;
+	public CofcoCommodityCategoryEntity getDcmCommodityCategory() {
+		return dcmCommodityCategory;
 	}
 
-	public void setCofcoCommodityCategory(CofcoCommodityCategory cofcoCommodityCategory) {
-	    this.cofcoCommodityCategory = cofcoCommodityCategory;
+	public void setDcmCommodityCategory(CofcoCommodityCategoryEntity dcmCommodityCategory) {
+		this.dcmCommodityCategory = dcmCommodityCategory;
 	}
 
 	@Override
@@ -161,9 +156,15 @@ public class CofcoCommodityEntity extends CommodityBaseEntity implements Seriali
 		return "DcmCommodity [id=" + id + ", commodityCode=" + commodityCode + ", commodityName=" + commodityName
 				+ ", createdBy=" + createdBy + ", createdOn=" + createdOn + ", modifiedBy=" + modifiedBy
 				+ ", modifiedOn=" + modifiedOn + ",   count=" + count
-				+ ", dcmCommodityCategory=" + cofcoCommodityCategory + "]";
+				+ ", dcmCommodityCategory=" + dcmCommodityCategory + "]";
 	}
 
+	public StatusEntity getStatus() {
+		return status;
+	}
 
+	public void setStatus(StatusEntity status) {
+		this.status = status;
+	}
 
 }
